@@ -1,0 +1,10 @@
+.Wrapper {
+  position: relative;
+}
+
+.Content-Wrapper {
+  max-width: 90%;
+  padding: 60px 20px;
+  margin: 0px auto;
+  box-sizing: border-box;
+}
