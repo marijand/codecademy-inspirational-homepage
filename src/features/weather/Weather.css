@@ -1,5 +1,6 @@
 .Weather {
-  padding-top: 12px;
+  padding-top: 20px;
+  padding-right: 16px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -10,8 +11,10 @@
 .Weather h2 {
   font-size: 32px;
   font-weight: 300;
+  padding-bottom: 6px;
 }
 
 .Weather h3 {
   font-weight: 300;
+  text-transform: uppercase;
 }

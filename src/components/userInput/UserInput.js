@@ -6,11 +6,9 @@ export const UserInput = () => {
   const [userInput, setUserInput] = useState("");
 
   return (
-    <div className="Content-Wrapper">
-      <div className="UserInput">
-        <h1>What's on your mind today?</h1>
-        <input />
-      </div>
+    <div className="UserInput">
+      <h1>What's on your mind today?</h1>
+      <input />
     </div>
   );
 };

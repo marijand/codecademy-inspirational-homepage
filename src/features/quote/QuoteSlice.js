@@ -4,8 +4,8 @@ export const QuoteSlice = createSlice({
   name: "quote",
   initialState: {
     quote: {
-      Text: "Named must your feat be before naish it you can.",
-      Author: "Yoda",
+      text: "If you want to make your dreams come true, the first thing you have to do is wake up.",
+      author: "J.M. Power",
     },
   },
   reducers: {
