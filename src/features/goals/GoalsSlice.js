@@ -12,6 +12,22 @@ export const GoalsSlice = createSlice({
         id: "2",
         text: "Water plants",
       },
+      {
+        id: "3",
+        text: "Water plants",
+      },
+      {
+        id: "4",
+        text: "Water plants",
+      },
+      {
+        id: "5",
+        text: "Water plants",
+      },
+      {
+        id: "6",
+        text: "Water plants",
+      },
     ],
   },
   reducers: {
