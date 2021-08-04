@@ -1,11 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "./Weather.css";
+import { selectWeather } from "./WeatherSlice";
 
 export const Weather = () => {
   // Add weather slice
-  let temperature = "59.86°";
-  let description = "Haze";
-  let icon = "http://openweathermap.org/img/wn/50d@2x.png";
+  const { temperature, description, icon } = useSelector(selectWeather).weather;
+
   return (
     <div className="Weather">
       <img src={icon} />

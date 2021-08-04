@@ -6,7 +6,7 @@ export const WeatherSlice = createSlice({
     weather: {
       temperature: "39.85",
       description: "Broken Clouds",
-      icon: "icon url",
+      icon: "http://openweathermap.org/img/wn/50d@2x.png",
     },
   },
   reducers: {
