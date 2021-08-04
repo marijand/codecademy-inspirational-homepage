@@ -14,19 +14,31 @@ export const GoalsSlice = createSlice({
       },
       {
         id: "3",
-        text: "Water plants",
+        text: "Water",
       },
       {
         id: "4",
-        text: "Water plants",
+        text: "WW",
       },
       {
         id: "5",
-        text: "Water plants",
+        text: "AAAA",
       },
       {
         id: "6",
-        text: "Water plants",
+        text: "ZZZ",
+      },
+      {
+        id: "7",
+        text: "Z",
+      },
+      {
+        id: "8",
+        text: "Z",
+      },
+      {
+        id: "9",
+        text: "ZlskjdflöksfdjööksjfklsjflaksjflaksfjasdkjfalskdfkasjdfZZ",
       },
     ],
   },
