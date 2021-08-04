@@ -1,5 +1,6 @@
 import "./App.css";
 import { UserInput } from "./components/userInput/UserInput";
+import { Weather } from "./features/weather/Weather";
 import background from "./yosemite.jpeg";
 
 export const App = () => {
@@ -15,7 +16,7 @@ export const App = () => {
         }}
         src={background}
       />
-      {/* Weather */}
+      <Weather />
       <UserInput />
       {/* Goals */}
       {/* Quote */}
