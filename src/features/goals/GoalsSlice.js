@@ -5,40 +5,24 @@ export const GoalsSlice = createSlice({
   initialState: {
     goals: [
       {
-        id: "1",
+        id: 0,
         text: "Eat a cake",
       },
       {
-        id: "2",
+        id: 1,
         text: "Water plants",
       },
       {
-        id: "3",
+        id: 2,
         text: "Water",
       },
       {
-        id: "4",
+        id: 3,
         text: "WW",
       },
       {
-        id: "5",
+        id: 4,
         text: "AAAA",
-      },
-      {
-        id: "6",
-        text: "ZZZ",
-      },
-      {
-        id: "7",
-        text: "Z",
-      },
-      {
-        id: "8",
-        text: "Z",
-      },
-      {
-        id: "9",
-        text: "ZlskjdflöksfdjööksjfklsjflaksjflaksfjasdkjfalskdfkasjdfZZ",
       },
     ],
   },
@@ -48,13 +32,15 @@ export const GoalsSlice = createSlice({
     },
 
     removeGoal: (state, action) => {
-      state.goals.fiter((goal) => goal.id !== action.payload.id);
+      state.goals = state.goals.filter((goal) => goal.id !== action.payload.id);
     },
   },
 });
 
 export const selectGoals = (state) => state.goals;
 
+export const selectLatestId = (state) =>
+  state.goals.goals[state.goals.goals.length - 1];
 export const { addGoal, removeGoal } = GoalsSlice.actions;
 
 export const goalsSliceReducer = GoalsSlice.reducer;

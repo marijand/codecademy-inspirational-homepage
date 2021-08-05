@@ -9,7 +9,11 @@ export const App = () => {
   return (
     <div className="App">
       <div className="Backdrop"></div>
-      <img id="background" src={background} />
+      <img
+        id="background"
+        src={background}
+        alt="Random inspiration background that shows something inspirational"
+      />
       <Weather />
       <UserInput />
       <Goals />

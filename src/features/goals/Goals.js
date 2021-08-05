@@ -7,11 +7,18 @@ import { selectGoals } from "./GoalsSlice";
 export const Goals = () => {
   const goals = useSelector(selectGoals).goals;
 
-  // ["#BA7077" "#819384" "#C18F6C" "#71899C"]
+  const colors = ["#BA7077", "#819384", "#C18F6C", "#71899C"];
   return (
     <div className="Goals">
       {goals.map((goal) => {
-        return <Goal key={goal.key} text={goal.text} />;
+        return (
+          <Goal
+            key={goal.id}
+            id={goal.id}
+            text={goal.text}
+            color={colors[goal.id % 4]}
+          />
+        );
       })}
     </div>
   );

@@ -6,9 +6,6 @@ import { selectQuote } from "./QuoteSlice";
 export const Quote = () => {
   const { text, author } = useSelector(selectQuote).quote;
 
-  console.log(text);
-  console.log(author);
-
   return (
     <div className="Quote">
       <h4>"{text}"</h4>

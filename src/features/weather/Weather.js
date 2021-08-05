@@ -9,7 +9,7 @@ export const Weather = () => {
 
   return (
     <div className="Weather">
-      <img src={icon} />
+      <img src={icon} alt="Shows a weather icon" />
 
       <div>
         <h2>{temperature}</h2>
