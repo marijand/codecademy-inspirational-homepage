@@ -1,13 +1,35 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./Weather.css";
-import { selectWeather } from "./WeatherSlice";
+import { fetchWeather, selectIsLoading, selectWeather } from "./WeatherSlice";
+
+import ClipLoader from "react-spinners/ClipLoader";
 
 export const Weather = () => {
-  // Add weather slice
-  const { temperature, description, icon } = useSelector(selectWeather).weather;
+  const dispatch = useDispatch();
+  const weather = useSelector(selectWeather);
 
-  return (
+  useEffect(() => {
+    if (weather === undefined) {
+      dispatch(fetchWeather());
+    }
+  }, [dispatch, weather]);
+
+  let temperature = 0;
+  let description = "";
+  let icon = null;
+
+  if (weather !== undefined) {
+    temperature = weather.main.temp;
+    description = weather.weather[0].description;
+    icon = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
+  }
+
+  return weather === undefined ? (
+    <div className="Weather">
+      <ClipLoader size={70} color="white" />
+    </div>
+  ) : (
     <div className="Weather">
       <img src={icon} alt="Shows a weather icon" />
 
