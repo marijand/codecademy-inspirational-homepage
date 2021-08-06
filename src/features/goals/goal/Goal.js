@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeGoal } from "../GoalsSlice";
 import "./Goal.css";
@@ -7,8 +8,8 @@ export const Goal = ({ id, text, color }) => {
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <div className="Buttons">
+    <div className="Goal" style={{ backgroundColor: color }}>
+      <div className="ButtonsDisplay">
         <div
           className="Remove"
           onClick={() => dispatch(removeGoal({ id: id }))}
@@ -17,10 +18,7 @@ export const Goal = ({ id, text, color }) => {
         </div>
         <div className="Done">Done</div>
       </div>
-
-      <div className="Goal" style={{ backgroundColor: color }}>
-        <p>{text}</p>
-      </div>
+      {text}
     </div>
   );
 };
