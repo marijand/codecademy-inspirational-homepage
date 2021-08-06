@@ -32,7 +32,7 @@ export const WeatherSlice = createSlice({
       state.hasError = false;
     },
     [fetchWeather.rejected]: (state, action) => {
-      console.log("rejected");
+      console.log("Weather API call failed.");
       state.isLoading = false;
       state.hasError = true;
     },

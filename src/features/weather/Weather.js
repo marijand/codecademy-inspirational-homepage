@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Weather.css";
-import { fetchWeather, selectIsLoading, selectWeather } from "./WeatherSlice";
+import { fetchWeather, selectWeather } from "./WeatherSlice";
 
 import ClipLoader from "react-spinners/ClipLoader";
 
