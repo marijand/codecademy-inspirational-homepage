@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchQuote = createAsyncThunk(
   "quote/fetchWeather",
   async (api, thunkAPI) => {
-    const response = await fetch("http://quotes.rest/qod.json");
+    const response = await fetch("https://quotes.rest/qod.json");
 
     const json = await response.json();
 
