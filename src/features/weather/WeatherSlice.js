@@ -4,7 +4,7 @@ export const fetchWeather = createAsyncThunk(
   "weather/fetchWeather",
   async (api, thunkAPI) => {
     const response = await fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=Schwaz&appid=7dfed27e324708866f3759944e4cc772&units=metric"
+      `https://api.openweathermap.org/data/2.5/weather?q=Schwaz&appid=${process.env.QUOTE_API}&units=metric`
     );
 
     const json = await response.json();

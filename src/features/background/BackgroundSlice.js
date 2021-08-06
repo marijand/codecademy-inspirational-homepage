@@ -4,7 +4,7 @@ export const fetchBackground = createAsyncThunk(
   "background/fetchBackground",
   async (api, thunkAPI) => {
     const response = await fetch(
-      "https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=61hHIuIKzomdLiKhpNit2kISndGzO7q6HrpPuIzbnps"
+      `https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=${process.env.BACKGROUND_API}`
     );
 
     const json = await response.json();
