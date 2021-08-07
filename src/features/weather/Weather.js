@@ -9,6 +9,11 @@ export const Weather = () => {
   const dispatch = useDispatch();
   const weather = useSelector(selectWeather);
 
+  console.log(process.env);
+
+  console.log(process.env.REACT_APP_BACKGROUND_API);
+  console.log(process.env.REACT_APP_QUOTE_API);
+
   useEffect(() => {
     if (weather === undefined) {
       dispatch(fetchWeather());
