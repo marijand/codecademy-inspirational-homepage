@@ -43,8 +43,9 @@ export const Weather = () => {
   let icon = `http://openweathermap.org/img/wn/03d@2x.png`;
 
   if (weather !== undefined) {
-    if (!weather.hasOwnProperty("cod")) {
-      console.log(weather);
+
+    if (weather.hasOwnProperty("cod")) {
+      console.log("asdf");
       temperature = weather.main.temp;
       description = weather.weather[0].description;
       icon = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
