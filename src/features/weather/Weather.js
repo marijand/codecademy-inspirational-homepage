@@ -8,8 +8,6 @@ import {
   selectWeather,
 } from "./WeatherSlice";
 
-import ClipLoader from "react-spinners/ClipLoader";
-
 export const Weather = () => {
   const dispatch = useDispatch();
   let weather = useSelector(selectWeather);
