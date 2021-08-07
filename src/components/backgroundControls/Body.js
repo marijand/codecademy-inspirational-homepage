@@ -7,7 +7,10 @@ import { Goals } from "../../features/goals/Goals";
 import leftArrow from "../../resources/line-angle-left.svg";
 import rightArrow from "../../resources/line-angle-right.svg";
 import { useDispatch } from "react-redux";
-import { fetchBackground } from "../../features/background/BackgroundSlice";
+import {
+  changeCurrentBackgroundBack,
+  changeCurrentBackgroundFront,
+} from "../../features/background/BackgroundSlice";
 
 export const Body = () => {
   const dispatch = useDispatch();
@@ -18,7 +21,7 @@ export const Body = () => {
         src={leftArrow}
         width={25}
         alt="Left Arrow"
-        onClick={() => dispatch(fetchBackground())}
+        onClick={() => dispatch(changeCurrentBackgroundBack())}
         style={{ cursor: "pointer" }}
       />
       <div style={{ flexGrow: "3" }}>
@@ -29,7 +32,7 @@ export const Body = () => {
         src={rightArrow}
         width={25}
         alt="Right Arrow"
-        onClick={() => dispatch(fetchBackground())}
+        onClick={() => dispatch(changeCurrentBackgroundFront())}
         style={{ cursor: "pointer" }}
       />
     </div>

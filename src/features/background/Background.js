@@ -1,29 +1,28 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBackground, selectBackground } from "./BackgroundSlice";
+import {
+  fetchBackground,
+  selectBackground,
+  selectCurrentBackground,
+} from "./BackgroundSlice";
 
 export const Background = () => {
   const dispatch = useDispatch();
   const background = useSelector(selectBackground);
 
-  console.log(background);
   useEffect(() => {
-    if (background === undefined) {
+    if (!background.length) {
       dispatch(fetchBackground());
     }
   }, [dispatch, background]);
 
-  let image = "";
-
-  if (background !== undefined) {
-    image = background.urls.regular;
-  }
+  const currentBackground = useSelector(selectCurrentBackground);
 
   return (
     <>
       <img
         id="background"
-        src={image}
+        src={currentBackground}
         alt="Random inspiration background that shows something inspirational"
       />
     </>

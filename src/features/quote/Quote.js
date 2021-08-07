@@ -19,10 +19,15 @@ export const Quote = () => {
   let text = "";
   let author = "";
 
-  if (quote !== undefined && quote === typeof String) {
-    console.log(quote.error);
+  if (quote !== undefined && quote.hasOwnProperty("success")) {
     text = quote.contents.quotes[0].quote;
     author = quote.contents.quotes[0].author;
+  }
+
+  if (quote !== undefined && quote.hasOwnProperty("error")) {
+    text =
+      "The last time doesn't exist. It's only this time. And everything is going to be different this time. There's only now.";
+    author = "Bill Murray";
   }
 
   return quote === undefined ? (

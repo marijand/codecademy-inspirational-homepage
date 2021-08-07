@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 
 export const fetchBackground = createAsyncThunk(
   "background/fetchBackground",
   async (api, thunkAPI) => {
     const response = await fetch(
-      `https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=${process.env.REACT_APP_BACKGROUND_API}`
+      `https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=${process.env.REACT_APP_BACKGROUND_API}&count=5`
     );
 
     const json = await response.json();
@@ -16,17 +16,57 @@ export const fetchBackground = createAsyncThunk(
 export const BackgroundSlice = createSlice({
   name: "background",
   initialState: {
-    background: undefined,
+    count: 0,
+    background: [],
+    currentBackground: "",
   },
-  reducers: {},
+  reducers: {
+    changeCurrentBackgroundFront: (state, action) => {
+      // Get array of background pictures
+      const currentState = current(state);
+      const background = currentState.background;
+
+      // Get current count for modulo calculation and update count
+      const i = currentState.count + 1;
+      state.count = i;
+
+      // Get length of array for modulo calculation
+      const len = currentState.background.length;
+
+      // Update the background
+      state.currentBackground = background[i % len];
+    },
+    changeCurrentBackgroundBack: (state, action) => {
+      // Get array of background pictures
+      const currentState = current(state);
+      const background = currentState.background;
+
+      // Get current count for modulo calculation and update count
+      let i = currentState.count - 1;
+      state.count = i;
+
+      // Get length of array for modulo calculation
+      const len = currentState.background.length;
+
+      // Make sure that numbers are always positive
+      if (i < 0) {
+        i = i * -1;
+        state.count = i;
+      }
+
+      // Update the background
+      state.currentBackground = background[i % len];
+    },
+  },
   extraReducers: {
     [fetchBackground.pending]: (state, action) => {
       state.isLoading = true;
       state.hasError = false;
     },
     [fetchBackground.fulfilled]: (state, action) => {
-      console.log(action.payload);
-      state.background = action.payload;
+      // Array with 5 links containing images
+      action.payload.forEach((obj) => state.background.push(obj.urls.regular));
+      state.currentBackground = action.payload[0].urls.regular;
       state.isLoading = false;
       state.hasError = false;
     },
@@ -40,6 +80,10 @@ export const BackgroundSlice = createSlice({
 
 export const selectBackground = (state) => state.background.background;
 
-export const { updateBackground } = BackgroundSlice.actions;
+export const selectCurrentBackground = (state) =>
+  state.background.currentBackground;
+
+export const { changeCurrentBackgroundFront, changeCurrentBackgroundBack } =
+  BackgroundSlice.actions;
 
 export const backgroundSliceReducer = BackgroundSlice.reducer;

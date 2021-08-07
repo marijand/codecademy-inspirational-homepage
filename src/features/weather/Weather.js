@@ -1,40 +1,59 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Weather.css";
-import { fetchWeather, selectWeather } from "./WeatherSlice";
+import {
+  fetchLocation,
+  fetchWeather,
+  selectGeolocation,
+  selectWeather,
+} from "./WeatherSlice";
 
 import ClipLoader from "react-spinners/ClipLoader";
 
 export const Weather = () => {
   const dispatch = useDispatch();
-  const weather = useSelector(selectWeather);
+  let weather = useSelector(selectWeather);
 
-  console.log(process.env);
+  let geolocation = useSelector(selectGeolocation);
 
-  console.log(process.env.REACT_APP_BACKGROUND_API);
-  console.log(process.env.REACT_APP_QUOTE_API);
-
-  useEffect(() => {
-    if (weather === undefined) {
-      dispatch(fetchWeather());
-    }
-  }, [dispatch, weather]);
-
-  let temperature = 0;
-  let description = "";
-  let icon = null;
-
-  if (weather !== undefined) {
-    temperature = weather.main.temp;
-    description = weather.weather[0].description;
-    icon = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
+  // Sometimes the api returns city names that consits several cities
+  // For example, Lourinhã e Atalaia. In this case, I retrieve the first city name
+  if (geolocation !== undefined) {
+    geolocation = geolocation.split(" ")[0];
   }
 
-  return weather === undefined ? (
-    <div className="Weather">
-      <ClipLoader size={70} color="white" />
-    </div>
-  ) : (
+  useEffect(() => {
+    // get current geolocation
+    const successfulLookup = (position) => {
+      if (position.coords.latitude !== undefined) {
+        dispatch(fetchLocation(position.coords));
+      }
+    };
+
+    window.navigator.geolocation.getCurrentPosition(
+      successfulLookup,
+      console.log
+    );
+
+    if (weather === undefined && geolocation !== undefined) {
+      dispatch(fetchWeather(geolocation));
+    }
+  }, [dispatch, weather, geolocation]);
+
+  let temperature = "--";
+  let description = "--------";
+  let icon = `http://openweathermap.org/img/wn/03d@2x.png`;
+
+  if (weather !== undefined) {
+    if (!weather.hasOwnProperty("cod")) {
+      console.log(weather);
+      temperature = weather.main.temp;
+      description = weather.weather[0].description;
+      icon = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
+    }
+  }
+
+  return (
     <div className="Weather">
       <img src={icon} alt="Shows a weather icon" />
 
