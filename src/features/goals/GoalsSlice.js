@@ -14,15 +14,7 @@ export const GoalsSlice = createSlice({
       },
       {
         id: 2,
-        text: "Water",
-      },
-      {
-        id: 3,
-        text: "WW",
-      },
-      {
-        id: 4,
-        text: "AAAA",
+        text: "Do the new Codecademy course",
       },
     ],
   },
